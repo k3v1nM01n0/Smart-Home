@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-ESP8266_ADDR = ("127.0.0.1", 8001)
+ESP8266_ADDR = ("192.168.43.246", 8081)
 
 #output digital device 
 devices = {1:0, 2:0, 3:0}
