@@ -10,7 +10,7 @@ client.send("id:state") //where id is a valid int between 1-3 and state is 1 or 
 import socket
 
 HOST = "0.0.0.0"
-PORT = 8000
+PORT = 8001
 
 ADDR= (HOST, PORT)
 
@@ -34,13 +34,14 @@ if __name__ == "__main__":
         data = data.decode("UTF-8")
         id = int(data[0])
         state = int(data[2])
-        if id not in state.keys() or state not in [1,0]:
+        print("id:%d state:%d"%(id,state))
+        if id not in pins.keys() or state not in [1,0]:
             print("invalid pin or state")
             conn.send(b"ERROR")
             conn.close()
         
         pins[id] = state
-        conn.send("OK")
+        conn.send(b"OK")
         conn.close()
 
 

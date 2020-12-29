@@ -1,13 +1,29 @@
+import socket
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-ESP8266_ADDR = ("192.168.0.30", 4500)
+ESP8266_ADDR = ("127.0.0.1", 8001)
 
+#output digital device 
 devices = {1:0, 2:0, 3:0}
 
-def set_device_state(id, state):
-    return True
+def set_device_state(_id, state):
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        s.connect(ESP8266_ADDR)
+        payload = b"%d:%d"%(_id,state)
+        s.send(payload)
+        data = s.recv(1024)
+        data = data.decode("UTF-8")
+        s.close()
+        print(data)
+        if data == "OK":
+            return True
+    except Exception as e:
+        print(e)
+    return False
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -25,6 +41,7 @@ def dev_view(id, state):
     if devices[id] == state:
         return jsonify({"msg":"OK"}), 200
     if set_device_state(id, state):
+        devices[id] = state
         return jsonify({"msg":"OK"}), 200
     return jsonify({"msg":"unable to set device state"}), 500
 
@@ -32,5 +49,5 @@ def dev_view(id, state):
 if __name__ == "__main__":
     #set all devices to an intial state
     for dev, state in devices.items():
-        set_device_state(id, state)
+        set_device_state(dev, state)
     app.run("0.0.0.0", 5000, debug=True)

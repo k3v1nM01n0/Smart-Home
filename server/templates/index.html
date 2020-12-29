@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
-    <title>{% block title %} {% endblock %}</title>
+    <title>{% block title %} smart home {% endblock %}</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Bulb #{{dev.id}}</h5>
-                            <input type="checkbox" {% if dev.state %} checked  {% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            <input id="{{dev.id}}" class="devices" type="checkbox" {% if dev.state %} checked  {% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
                         </div>
                     </div>
                 </div>
@@ -41,5 +41,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+    <script>
+        $(function() {
+            $('.devices').change(function() {               
+                var id = $(this).prop('id');
+                var state = $(this).prop('checked') ? 1 : 0;
+                var url = "/devices/" + id + "/" + state;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)                     
+                    })
+                    .catch(error=> {
+                        console.log(error);                        
+                    })
+            })
+        })
+    </script>
   </body>
 </html>
