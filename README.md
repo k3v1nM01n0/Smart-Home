@@ -1,13 +1,28 @@
 ## Description
+    Building a TCP server on ESP8266 to control its outputs.The board is programmed using platformio and the module used is WiFiClient.The interface used is Flask webserver that sends instructions to the to the TCP server. 
 
-TODO
 ## Setup
+    Install the platform io extension on VS IDE
+    create new project and edit platformio.ini as folows:
+    
+        ```bash
+        platform = espressif8266
+        board = huzzah
+        framework = arduino
+        monitor_speed = 115200
+        ```
 
-TODO
+
+
 
 ### Requirements
 
-TODO
+    Esp8266 microcontroller
+    Resisitor
+    3 leds
+    VS code with Platormio extension
+    
+
 
 ## Running Server
 
