@@ -5,12 +5,13 @@
     Install the platform io extension on VS IDE
     create new project and edit platformio.ini as folows:
     
-        ```bash
+    
+        
         platform = espressif8266
         board = huzzah
         framework = arduino
         monitor_speed = 115200
-        ```
+       
 
 
 
