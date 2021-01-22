@@ -3,8 +3,8 @@
 #include <WiFiServer.h>
 #include <ESP8266WiFi.h>
 
-#define SSID "TECNO CAMON 12"
-#define PASS "12345678"
+#define SSID "SSID"
+#define PASS "PASS"
 
 
 
