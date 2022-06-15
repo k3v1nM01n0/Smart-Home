@@ -1,3 +1,5 @@
+# Smart-Home
+
 ## Description
     Building a TCP server on ESP8266 to control its outputs.
     The board is programmed using platformio and the module used is WiFiClient.
@@ -14,8 +16,6 @@
         framework = arduino
         monitor_speed = 115200
        
-
-
 
 
 ### Requirements
