@@ -1,30 +1,29 @@
 # Smart-Home
 
 ## Description
-    Building a TCP server on ESP8266 to control its outputs.
-    The board is programmed using platformio and the module used is WiFiClient.
-    The interface used is Flask webserver that sends instructions to the to the TCP server. 
-
-## Setup
-    Install the platform io extension on VS IDE
-    create new project and edit platformio.ini as folows:
-    
-    
-        
-        platform = espressif8266
-        board = huzzah
-        framework = arduino
-        monitor_speed = 115200
-       
+Building a TCP server on ESP8266 to control its outputs.
+The board is programmed using platformio and the module used is WiFiClient.
+The interface used is Flask webserver that sends instructions to the to the TCP server. 
 
 
 ### Requirements
+This project was created on Expressive Esp8266 microcontroler
 
-    Esp8266 microcontroller
-    Resisitor
-    3 leds
-    VS code with Platormio extension
-    
+    -Esp8266 microcontroller
+    -Resisitors
+    -leds
+    -Platormio VS code extension
+
+
+## Setup
+Install the platform io extension on VS IDE
+create new project and edit platformio.ini as folows:
+```python 
+    platform = espressif8266
+    board = huzzah
+    framework = arduino
+    monitor_speed = 115200
+``` 
 
 
 ## Running Server
